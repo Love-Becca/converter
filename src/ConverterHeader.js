@@ -11,6 +11,7 @@ const Header = () => {
                         <li>About</li>
                         <li>Sign in</li>
                         <li className="click">Sign up</li>
+                        
                     </ul>
                 </nav>
             </header>
