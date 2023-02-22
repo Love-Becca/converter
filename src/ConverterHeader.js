@@ -10,7 +10,7 @@ const Header = () => {
                         <li>Download</li>
                         <li>About</li>
                         <li>Sign in</li>
-                        <li>Sign up</li>
+                        <li className="click">Sign up</li>
                     </ul>
                 </nav>
             </header>
