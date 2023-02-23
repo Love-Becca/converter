@@ -9,7 +9,7 @@ ul{
     display: flex;
     gap: 4vw;
     justify-content: end;
-    padding: calc(100vw - 98%);
+    padding: calc(100vw - 99%);
     container-type: inline-size;
 }
 
@@ -19,42 +19,81 @@ li:active{
     box-shadow: 0px 0px 5px rgb(250, 92, 34); 
 }
 
-input {
-    border: 2px solid red;
-    width: 90px;
-    overflow:hidden;
+.info-group{
+    width: 45vw;
+}
+
+.button{
+    background-color: rgb(250, 92, 34);
+    padding: 15px 90px;
+    border-radius: 35px;
+}
+input[type = "file"]{
+    width: 6vw;
+    overflow:hidden; 
+    position: absolute;
+    z-index: -1;
+    left: 70px;
+    font-size: 17px;
+    color: #b8b8b8; 
 }
 
 .hero-body{
     margin: 0 auto;
     display: flex;
-    gap: 25vw;
+    gap: 15vw;
     width: 95vw;
-    height: 50vh;
-    padding: 25px
+    padding: 0.15vw 1.5vw;
 }
 
 .hero-info{
     place-self: center;
     width: 25vw;
+    padding: 0.4vw 2vw;
 }
+
 
 .hero-title{
     line-height: 4.0vw;
-    margin-bottom: 10px;
+    margin-bottom: 1vw;
     font-size: 3.5vw;
     word-wrap: break-word;
 }
 
 .hero-details{
     word-wrap: break-word;
-    line-height: 18px;
+    line-height: 1.5vw;
     margin-top: 0px;
-    margin-bottom: 4vw;
+   
 }
 .hero-image{
     width: 40vw;
     place-self: center;
+}
+
+.step-body{
+    width: 35vw;
+    display: flex;
+    text-align: center;
+    margin-bottom: 3vw;
+    padding-left: 1.5vw;
+
+}
+
+.step-1 > div, .step-2 > div, .step-3 > div{
+    width: 3vw;
+    height: 6vh;
+    border-radius: 50%;
+    text-align: center;
+    background-color: rgb(250, 92, 34);
+}
+
+span{
+    width: 7vw;
+    border-top: 2px solid rgb(196, 193, 193);
+    margin-top: 1vw;
+    margin-right: 0.8vw;
+
 }
 
 @container (width < 600px){
