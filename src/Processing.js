@@ -1,6 +1,6 @@
 import React from 'react';
 import file from './assets/file.svg';
-import convert from './assets/convert.png'
+
 
 const Processing = (data) => {
     

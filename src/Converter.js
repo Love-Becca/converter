@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useCallback} from "react";
 import Steps from "./steps";
 import './Converter.css'
 import cloud from './assets/space.png'
@@ -7,28 +7,42 @@ import convert from'./assets/convert.png'
 
 
 const Body = () => {
+    const fileError = "Maximum file reached";
     const [data, setData] = useState(new Set());
     const [files, setFiles] = useState([]);
+    const [loading, setLoading] = useState({
+        isLoading: false
+    });
 
-    const convertFile = ()=>{
-        console.log("working");
-    }
+    const toggle = useCallback(()=>{
+        setLoading(prevLoading=>{
+            return{
+                ...prevLoading,
+                isLoading:!loading.isLoading
+            }
+        })
+
+    },[loading.isLoading])
 
     const handleClick = (e)=>{
-        setFiles(prevFiles =>{
-            return[
-                ...prevFiles,
-                e.target.files
-            ]
-        });        
+        if (loading.isLoading === false){
+            setFiles(prevFiles =>{
+                return[
+                    ...prevFiles,
+                    e.target.files
+                ]
+            });
+        }       
     }
 
     useEffect(() => {
-        for (const i of files) {
-            for (const j of i) {
-                setData(prevData=>new Set([...prevData, j]));
-            }
-        } 
+        if (files.length < 4) {
+            for (const i of files) {
+                for (const j of i) {
+                    setData(prevData=>new Set([...prevData, j]));
+                }
+            }  
+        }
     }, [files]);
 
     
@@ -40,35 +54,36 @@ const Body = () => {
         name={x.name}
     />)
 
-    return ( 
-        <>
-            <div className="hero-body">
-                <div className="info-group">
-                    <div className="hero-info">
-                        <h2 className="hero-title">File Converter</h2>
-                        <p className="hero-details">To get started use the button below and select files to convert from your laptop.</p>
+    return <>
+        <div className="hero-body">
+            <div className="info-group">
+                <div className="hero-info">
+                    <h2 className="hero-title">File Converter</h2>
+                    <p className="hero-details">To get started use the button below and select files to convert from your laptop.</p>
+                </div>
+                <div className="hero-steps">
+                    <Steps />
+                </div>
+                <label className="button" htmlFor="upload">Choose File</label>
+                <input type="file" id="upload" onChange={handleClick}/>
+                <p className="error-message">{files.length > 3 && fileError}</p>
+                <div className="file-list">
+                    <div className="files">
+                        {saved}
                     </div>
-                    <div className="hero-steps">
-                        <Steps />
-                    </div>
-                    <label className="button" htmlFor="upload">Choose File</label>
-                    <input type="file" id="upload" onChange={handleClick}/>
-                    <div className="file-list">
-                        <div className="files">
-                            {saved}
-                        </div>
-                        <div className="convert-icon">
-                         <img src={convert} alt="convert-file" onClick={convertFile}/>
-                        </div>
+                    <div className={files.length !== 0 && loading.isLoading?"loader": "hide"}></div>
+                    <div className="convert-icon">
+                     <img src={convert} alt="convert-file" onClick={toggle} className={files.length !== 0 && loading.isLoading?"hide": "show"}/>
                     </div>
                 </div>
-                <div className="hero-image">
-                    <img src={cloud} alt="file" className="cloud-image"/>
-                </div>
+               
             </div>
-            
-        </>
-    );
+            <div className="hero-image">
+                <img src={cloud} alt="file" className="cloud-image"/>
+            </div>
+        </div>
+        
+    </>;
 }
  
 export default Body;
