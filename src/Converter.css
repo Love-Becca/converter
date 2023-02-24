@@ -9,7 +9,7 @@ ul{
     display: flex;
     gap: 4vw;
     justify-content: end;
-    padding: calc(100vw - 99%);
+    padding: 0.5vw calc(100vw - 99%);
     container-type: inline-size;
 }
 
@@ -27,6 +27,8 @@ li:active{
     background-color: rgb(250, 92, 34);
     padding: 15px 90px;
     border-radius: 35px;
+    color: white;
+    font-weight: 500;
 }
 input[type = "file"]{
     width: 6vw;
@@ -64,6 +66,8 @@ input[type = "file"]{
     word-wrap: break-word;
     line-height: 1.5vw;
     margin-top: 0px;
+    color:rgb(128, 126, 126);
+    font-size: 1.2vw;
    
 }
 .hero-image{
@@ -72,7 +76,7 @@ input[type = "file"]{
 }
 
 .step-body{
-    width: 35vw;
+    width: 38vw;
     display: flex;
     text-align: center;
     margin-bottom: 3vw;
@@ -88,7 +92,10 @@ input[type = "file"]{
     background-color: rgb(250, 92, 34);
 }
 
-span{
+.step-1 > p, .step-2 > p, .step-3 > p{
+    font-size: 1.2vw;
+}
+.line{
     width: 7vw;
     border-top: 2px solid rgb(196, 193, 193);
     margin-top: 1vw;
@@ -96,6 +103,26 @@ span{
 
 }
 
+.file-list{
+    margin-top: 2vw;
+    display: flex;
+    width: 30vw;
+}
+
+.files{
+    width: 15vw
+}
+.file-name{
+    color: var(--font-color);
+    font-weight: 200;
+    font-size: small;
+    display: inline-block;
+    margin-left: 1vw;
+}
+
+.file-name:first-letter{
+    text-transform: capitalize;
+}
 @container (width < 600px){
     li{
         width: auto;

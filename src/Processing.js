@@ -1,13 +1,15 @@
 import React from 'react';
-import file from './assets/file.svg'
+import file from './assets/file.svg';
+import convert from './assets/convert.png'
 
 const Processing = (data) => {
-    console.log(data.name);
+    
     return (
         <>
             <div className="file-attached">
                 <img src={file} alt="file"  width="20vw"/>
-                <p></p>
+                <span className='file-name'>{data.name.toLowerCase()}</span>
+
             </div>
         </>
     );

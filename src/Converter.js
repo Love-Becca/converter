@@ -3,12 +3,17 @@ import Steps from "./steps";
 import './Converter.css'
 import cloud from './assets/space.png'
 import Processing from "./Processing";
+import convert from'./assets/convert.png'
 
 
 const Body = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(new Set());
     const [files, setFiles] = useState([]);
-    console.log(data);
+
+    const convertFile = ()=>{
+        console.log("working");
+    }
+
     const handleClick = (e)=>{
         setFiles(prevFiles =>{
             return[
@@ -21,14 +26,14 @@ const Body = () => {
     useEffect(() => {
         for (const i of files) {
             for (const j of i) {
-                setData(prevData=>[...prevData, j]);
+                setData(prevData=>new Set([...prevData, j]));
             }
         } 
     }, [files]);
 
     
 
-    const saved = data.map(x=>
+    const saved = Array.from(data).map(x=>
     <Processing
         key={x.size}
         id={x.size}
@@ -48,8 +53,13 @@ const Body = () => {
                     </div>
                     <label className="button" htmlFor="upload">Choose File</label>
                     <input type="file" id="upload" onChange={handleClick}/>
-                    <div>
-                        {saved}
+                    <div className="file-list">
+                        <div className="files">
+                            {saved}
+                        </div>
+                        <div className="convert-icon">
+                         <img src={convert} alt="convert-file" onClick={convertFile}/>
+                        </div>
                     </div>
                 </div>
                 <div className="hero-image">

@@ -8,12 +8,12 @@ const Steps = () => {
                 <div>1</div>
                 <p>choose file</p>
             </div>
-            <span></span>
+            <span className='line'></span>
             <div className='step-2'>
                 <div>2</div>
                 <p>convert</p>
             </div>
-            <span></span>
+            <span className='line'></span>
             <div className='step-3'>
                 <div>3</div>
                 <p>Download pdf</p>
