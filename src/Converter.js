@@ -1,13 +1,40 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import Steps from "./steps";
 import './Converter.css'
 import cloud from './assets/space.png'
-import file from './assets/file.svg'
+import Processing from "./Processing";
+
 
 const Body = () => {
+    const [data, setData] = useState([]);
+    const [files, setFiles] = useState([]);
+    console.log(data);
     const handleClick = (e)=>{
-        const files = e.target.files;
+        setFiles(prevFiles =>{
+            return[
+                ...prevFiles,
+                e.target.files
+            ]
+        });        
     }
+
+    useEffect(() => {
+        for (const i of files) {
+            for (const j of i) {
+                setData(prevData=>[...prevData, j]);
+            }
+        } 
+    }, [files]);
+
+    
+
+    const saved = data.map(x=>
+    <Processing
+        key={x.size}
+        id={x.size}
+        name={x.name}
+    />)
+
     return ( 
         <>
             <div className="hero-body">
@@ -21,12 +48,9 @@ const Body = () => {
                     </div>
                     <label className="button" htmlFor="upload">Choose File</label>
                     <input type="file" id="upload" onChange={handleClick}/>
-                    {/* <template>
-                        <div className="file-attached">
-                            <img src={file} alt="file" />
-                            <p>{files}</p>
-                        </div>
-                    </template> */}
+                    <div>
+                        {saved}
+                    </div>
                 </div>
                 <div className="hero-image">
                     <img src={cloud} alt="file" className="cloud-image"/>
