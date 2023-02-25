@@ -1,12 +1,17 @@
 import React,{useState, useEffect, useCallback} from "react";
 import Steps from "./steps";
 import './Converter.css'
-import cloud from './assets/space.png'
+import cloud from './assets/hero-image.png'
 import Processing from "./Processing";
 import convert from'./assets/convert.png'
+// import pdfkit from 'pdfkit'
+// import fs from 'fs'
 
 
 const Body = () => {
+    // const docs = new pdfkit();
+    // docs.pipe(fs.createWriteStream('output.pdf'));
+    // console.log(docs);
     const fileError = "Maximum file reached";
     const [data, setData] = useState(new Set());
     const [files, setFiles] = useState([]);
@@ -73,7 +78,9 @@ const Body = () => {
                     </div>
                     <div className={files.length !== 0 && loading.isLoading?"loader": "hide"}></div>
                     <div className="convert-icon">
-                     <img src={convert} alt="convert-file" onClick={toggle} className={files.length !== 0 && loading.isLoading?"hide": "show"}/>
+                        {files.length !== 0 && !loading.isLoading && (
+                            <img src={convert} alt="convert-file" onClick={toggle} className="show" />
+                        )}
                     </div>
                 </div>
                

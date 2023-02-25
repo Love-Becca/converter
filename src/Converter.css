@@ -3,6 +3,7 @@ li{
     list-style-type: none;
     width: 7vw;
     cursor:pointer;
+    padding: 5px;
 }
 
 ul{
@@ -15,17 +16,16 @@ ul{
 
 li:active{
     border-radius: 15px;
-    padding: 5px;
     box-shadow: 0px 0px 5px rgb(250, 92, 34); 
 }
 
 .info-group{
-    width: 45vw;
+    width: 40vw;
 }
 
 .button{
     background-color: rgb(250, 92, 34);
-    padding: 15px 90px;
+    padding: 1.2vw 7.2vw;
     border-radius: 35px;
     color: white;
     font-weight: 500;
@@ -43,9 +43,10 @@ input[type = "file"]{
 .hero-body{
     margin: 0 auto;
     display: flex;
-    gap: 15vw;
+    gap: 2vw;
     width: 95vw;
     padding: 0.15vw 1.5vw;
+
 }
 
 .hero-info{
@@ -71,8 +72,7 @@ input[type = "file"]{
    
 }
 .hero-image{
-    width: 40vw;
-    place-self: center;
+    width: 55vw;
 }
 
 .step-body{
@@ -160,10 +160,53 @@ input[type = "file"]{
     }
 }
 
+.cloud-image{
+    width: 54vw;
+}
+
 @container (width < 600px){
     li{
         width: auto;
         margin-left:5px;
         font-size: clamp(0.6rem, 0.8rem, 1rem);
+    }
+}
+
+@media (min-width:700px) and (max-width:1365px){
+    .button{
+        background-color: blue;
+    }
+    .step-1 > div, .step-2 > div, .step-3 > div{
+        font-size: 1.5vw;
+        width: 3vw;
+        height: 4vh;
+    }
+    li{
+        font-size: 1.5vw;
+    }
+}
+
+@media (min-width:1367px){
+    .button{
+        background-color:green;
+    }
+    .step-1 > div, .step-2 > div, .step-3 > div{
+        font-size: 1.5vw;
+        width: 3vw;
+        height: 4vh;
+    }
+}
+
+@media (min-width:450px) and (max-width:699px){
+    .button{
+        background-color:yellow;
+    }
+    .step-1 > div, .step-2 > div, .step-3 > div{
+        font-size: 1.5vw;
+        width: 3vw;
+        height: 2vh;
+    }
+    li{
+        font-size: 1.5vw;
     }
 }
