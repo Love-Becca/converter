@@ -2,7 +2,7 @@ import React from 'react';
 import file from './assets/file.svg';
 
 
-const Processing = (data) => {
+const RenderDisplayFiles = (data) => {
     
     return (
         <>
@@ -15,4 +15,4 @@ const Processing = (data) => {
     );
 }
  
-export default Processing;
+export default RenderDisplayFiles;

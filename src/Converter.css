@@ -23,7 +23,7 @@ li:active{
     width: 40vw;
 }
 
-.button{
+.button,.download-files{
     background-color: rgb(250, 92, 34);
     padding: 1.2vw 7.2vw;
     border-radius: 35px;
@@ -139,7 +139,7 @@ input[type = "file"]{
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    animation: spin 2s linear infinite;
+    animation: spin 1s linear infinite;
 
 }
 
@@ -170,6 +170,15 @@ input[type = "file"]{
         margin-left:5px;
         font-size: clamp(0.6rem, 0.8rem, 1rem);
     }
+}
+
+.download-files{
+    
+    background-color: rgb(250, 92, 34);
+    padding: 1.2vw 7.2vw;
+    border-radius: 35px;
+    color: white;
+    font-weight: 500;
 }
 
 @media (min-width:700px) and (max-width:1365px){
