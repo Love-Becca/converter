@@ -19,17 +19,63 @@ li:active{
     box-shadow: 0px 0px 5px rgb(250, 92, 34); 
 }
 
+  
+.hamburger-menu{
+    display: none;
+}
+
+/*   
+.hamburger span:nth-child(2){
+    transform: translate(8px, 0px);
+    width: 1rem;
+}
+  
+.close{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: 34vw;
+    margin-top: 25px;
+}
+.close span{
+    border-bottom: 4px solid whitesmoke;
+    margin-bottom: 1px;
+    width: 1.5rem;
+    border-radius: 5px;
+}
+  
+.close span:nth-child(1){
+    transform: rotate(310deg);
+}
+.close span:nth-child(3){
+    transform: rotate(50deg);
+    margin-top: -6px;
+}
+.close span:nth-child(2){
+    display: none;
+}
+  
+.close-bar{
+    background-color: transparent;
+    position:absolute;
+    margin-left: 10px;
+    height: 200px;
+    padding: 5px;
+  
+} */ 
+
 .info-group{
     width: 40vw;
 }
 
-.button,.download-files{
+.button{
     background-color: rgb(250, 92, 34);
     padding: 1.2vw 7.2vw;
     border-radius: 35px;
     color: white;
     font-weight: 500;
 }
+
 input[type = "file"]{
     width: 6vw;
     overflow:hidden; 
@@ -43,7 +89,7 @@ input[type = "file"]{
 .hero-body{
     margin: 0 auto;
     display: flex;
-    gap: 2vw;
+    gap: 0vw;
     width: 95vw;
     padding: 0.15vw 1.5vw;
 
@@ -71,6 +117,7 @@ input[type = "file"]{
     font-size: 1.2vw;
    
 }
+
 .hero-image{
     width: 55vw;
 }
@@ -95,6 +142,7 @@ input[type = "file"]{
 .step-1 > p, .step-2 > p, .step-3 > p{
     font-size: 1.2vw;
 }
+
 .line{
     width: 7vw;
     border-top: 2px solid rgb(196, 193, 193);
@@ -110,8 +158,15 @@ input[type = "file"]{
 }
 
 .files{
-    width: 15vw
+    width: 25vw;
 }
+
+.file-attached{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
 .file-name{
     color: var(--font-color);
     font-weight: 200;
@@ -134,6 +189,7 @@ input[type = "file"]{
 }
 
 .loader{
+    place-self: center;
     border: 5px solid #f3f3f3;
     border-top: 5px solid rgb(146, 146, 146);
     border-radius: 50%;
@@ -148,9 +204,15 @@ input[type = "file"]{
 }
 
 .show{
-    width: 30px;
-    height: 30px;
+    width: 4vw;
+    height: 8vh;
+    
 }
+
+.convert-icon{
+    place-self: center;
+}
+
 @keyframes spin{
     0%{
         transform: rotate(0deg);
@@ -172,50 +234,148 @@ input[type = "file"]{
     }
 }
 
-.download-files{
+.convert_other_files{
+    padding: 0vw 1.5vw;
+    color: rgb(146, 146, 146);
+    font-size: 1vw;
+    position: fixed;
+    bottom: 1px;
     
-    background-color: rgb(250, 92, 34);
-    padding: 1.2vw 7.2vw;
-    border-radius: 35px;
-    color: white;
-    font-weight: 500;
 }
 
-@media (min-width:700px) and (max-width:1365px){
-    .button{
-        background-color: blue;
+.convert_other_files a{
+    text-decoration-color: rgb(250, 92, 34);
+    color: black;
+    
+}
+
+@media screen and (max-width:500px){
+    .hamburger-menu{
+        display: flex;
+        flex-direction: column;
+        gap: 0.2vw;
+        position: absolute;
+        right: 1px;
+        top: 5px;
     }
-    .step-1 > div, .step-2 > div, .step-3 > div{
-        font-size: 1.5vw;
-        width: 3vw;
-        height: 4vh;
+    
+    .hamburger-menu span{
+        border-bottom: 0.8vw solid rgb(146, 146, 146);
+        margin-bottom: 0.5vw;
+        width: 7vw;
     }
+
+    .hamburger-open{
+        flex-direction: column-reverse;
+        width: 35vw;
+        position: absolute;
+        right: 1px;
+    }
+    .hamburger-close{
+        display: none;
+    }
+
     li{
-        font-size: 1.5vw;
+        text-align: center;
+        width: 30vw;
+        padding: 5px;
     }
-}
 
-@media (min-width:1367px){
-    .button{
-        background-color:green;
+    li:active{
+        border-bottom: 0.2vw solid rgb(146, 146, 146);
+        border-radius: 0px;
+        box-shadow: none
     }
-    .step-1 > div, .step-2 > div, .step-3 > div{
-        font-size: 1.5vw;
-        width: 3vw;
-        height: 4vh;
-    }
-}
 
-@media (min-width:450px) and (max-width:699px){
-    .button{
-        background-color:yellow;
+    .hero-body{
+        flex-direction: column;
+
     }
+
+    .info-group{
+        width: 90vw;
+        margin-top: 25vw;
+        place-self: center;
+    }
+
+    .hero-info{
+        margin: 0 auto;
+        width: 78vw;
+        padding: 0.4vw 2vw;
+    }
+
+    .hero-steps{
+        width: 78vw;
+        margin: 0 auto;
+    }
+    .step-body{
+        width: 75vw;
+        padding-left: 1.5vw;
+    
+    }
+
     .step-1 > div, .step-2 > div, .step-3 > div{
-        font-size: 1.5vw;
-        width: 3vw;
-        height: 2vh;
+        width: 6vw;
+        height: 3vh;
     }
-    li{
-        font-size: 1.5vw;
+    
+    .step-1 > p, .step-2 > p, .step-3 > p{
+        font-size: 2vw;
+        text-align: start;
+    }
+    
+    .line{
+        width: 20vw;
+        border-top: 2px solid rgb(196, 193, 193);
+        margin-top: 1vw;
+        margin-right: 0.8vw;
+    
+    }
+
+    .choose-file{
+        width: 50vw;
+        margin: 0 auto;
+    }
+
+    input[type = "file"]{
+        left: 45vw;
+    }
+
+    .hero-image{
+        width: 90vw;
+        place-self: center;
+    }
+
+    .cloud-image{
+        width: 90vw;
+    }
+
+    .hero-title{
+        line-height: 15vw;
+        margin-bottom: 3vw;
+        font-size: 15vw;
+    }
+    
+    .hero-details{
+        line-height: 5vw;
+        font-size: 4vw;
+    }
+
+    .file-list{
+        margin: 0 auto;
+        width: 80vw;
+    }
+
+    .files{
+        width: 68vw;
+    }
+
+    .show{
+        width: 10vw;
+        height: 9vh;
+    }
+    .convert_other_files{
+        font-size: 2.5vw;
+        
     }
 }

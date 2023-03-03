@@ -91,9 +91,11 @@ const Body = () => {
                 <div className="hero-steps">
                     <Steps />
                 </div>
-                <label className="button" htmlFor="upload">Choose File</label>
-                <input type="file" id="upload" multiple={false} accept=".jpg,.png,.xlsx,.doc,.docx,.xml,application/msword" onChange={(e)=>handleChange(e.target)}/>
-                <p className="error-message">{files.length > 3 && fileErrorMessage}</p>
+                <div className="choose-file">
+                    <label className="button" htmlFor="upload">Choose File</label>
+                    <input type="file" id="upload" multiple={false} accept=".jpg,.png,.xlsx,.doc,.docx,.xml,application/msword" onChange={(e)=>handleChange(e.target)}/>
+                    <p className="error-message">{files.length > 3 && fileErrorMessage}</p>
+                </div>
                 <div className="file-list">
                     <div className="files">
                         {displayFiles}
@@ -112,7 +114,7 @@ const Body = () => {
                 <img src={cloud} alt="file" className="cloud-image"/>
             </div>
         </div>
-        <p>Image only. <a href="http://localhost:3000/">Convert other files?</a></p>
+        <p className="convert_other_files">Image only. <a href="http://localhost:3000/">Convert other files?</a></p>
         
     </>;
 }
