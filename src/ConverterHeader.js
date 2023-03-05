@@ -1,4 +1,5 @@
 import React,{useState}from "react";
+import { NavLink } from "react-router-dom";
 import './Converter.css'
 
 const Header = (props) => {
@@ -10,7 +11,7 @@ const Header = (props) => {
         <>
             <header>
                 <nav>
-                    <div className="hamburger-menu" onClick={toggleNavBar}>
+                    <div className={toggle?"hamburger-menu slide-forward":"hamburger-menu slide-backward"} onClick={toggleNavBar}>
                         <span></span>
                         <span></span>
                         <span></span>
@@ -19,7 +20,7 @@ const Header = (props) => {
                         <li onClick={()=>props.loadState && props.getFile()}>Download</li>
                         <li>About</li>
                         <li>Sign in</li>
-                        <li className="click">Sign up</li>
+                        <NavLink to="signup" style={({isActive}) =>isActive? 'active': undefined}><li>Sign up</li></NavLink>
                     </ul>
                 </nav>
             </header>

@@ -1,5 +1,5 @@
 import React,{useState, useEffect, useCallback} from "react";
-import Steps from "./steps";
+import Steps from "./Steps";
 import './Converter.css'
 import cloud from './assets/hero-image.png'
 import RenderDisplayFiles from "./Processing";
@@ -7,6 +7,7 @@ import convert from'./assets/convert.png'
 import jsPDF from 'jspdf';
 import download from './assets/download.png'
 import ConverterHeader from './ConverterHeader'
+import {Link} from 'react-router-dom'
 
 
 const Body = () => {
@@ -78,45 +79,46 @@ const Body = () => {
         name={items.name}
     />)
 
-   
 
-    return <>
-        <ConverterHeader getFile ={()=>convertFiles()} loadState={downloadFile} />
-        <div className="hero-body">
-            <div className="info-group">
-                <div className="hero-info">
-                    <h2 className="hero-title">File Converter</h2>
-                    <p className="hero-details">To get started use the button below and select files to convert from your laptop.</p>
-                </div>
-                <div className="hero-steps">
-                    <Steps />
-                </div>
-                <div className="choose-file">
-                    <label className="button" htmlFor="upload">Choose File</label>
-                    <input type="file" id="upload" multiple={false} accept=".jpg,.png,.xlsx,.doc,.docx,.xml,application/msword" onChange={(e)=>handleChange(e.target)}/>
-                    <p className="error-message">{files.length > 3 && fileErrorMessage}</p>
-                </div>
-                <div className="file-list">
-                    <div className="files">
-                        {displayFiles}
+    return(
+        <>
+            <ConverterHeader getFile ={()=>convertFiles()} loadState={downloadFile} />
+            <div className="hero-body">
+                <div className="info-group">
+                    <div className="hero-info">
+                        <h2 className="hero-title">File Converter</h2>
+                        <p className="hero-details">To get started use the button below and select files to convert from your laptop.</p>
                     </div>
-                    <div className={files.length !== 0 && loading.isLoading && !downloadFile?"loader": "hide"}></div>
-                    <div className="convert-icon">
-                        {files.length !== 0 && !loading.isLoading && (
-                            <img src={convert} alt="convert-file" onClick={toggle} className="show" />
-                        )}
-                        {downloadFile && <img src={download} alt="download-file" className="show" onClick={convertFiles}/>}
+                    <div className="hero-steps">
+                        <Steps />
                     </div>
+                    <div className="choose-file">
+                        <label className="button" htmlFor="upload">Choose File</label>
+                        <input type="file" id="upload" multiple={false} accept=".jpg,.png,.xlsx,.doc,.docx,.xml,application/msword" onChange={(e)=>handleChange(e.target)}/>
+                        <p className="error-message">{files.length > 3 && fileErrorMessage}</p>
+                    </div>
+                    <div className="file-list">
+                        <div className="files">
+                            {displayFiles}
+                        </div>
+                        <div className={files.length !== 0 && loading.isLoading && !downloadFile?"loader": "hide"}></div>
+                        <div className="convert-icon">
+                            {files.length !== 0 && !loading.isLoading && (
+                                <img src={convert} alt="convert-file" onClick={toggle} className="show" />
+                            )}
+                            {downloadFile && <img src={download} alt="download-file" className="show" onClick={convertFiles}/>}
+                        </div>
+                    </div>
+                
                 </div>
-               
+                <div className="hero-image">
+                    <img src={cloud} alt="file" className="cloud-image"/>
+                </div>
             </div>
-            <div className="hero-image">
-                <img src={cloud} alt="file" className="cloud-image"/>
-            </div>
-        </div>
-        <p className="convert_other_files">Image only. <a href="http://localhost:3000/">Convert other files?</a></p>
-        
-    </>;
+            <p className="convert_other_files">Image only.<Link to='signup'>Convert other files?</Link></p>
+            
+        </>
+    );
 }
  
 export default Body;
