@@ -1,25 +1,22 @@
-import React,{useState, useEffect, useCallback} from "react";
+import React,{useState, useCallback, useContext} from "react";
 import Steps from "./Steps";
 import './Converter.css'
 import cloud from './assets/hero-image.png'
 import RenderDisplayFiles from "./Processing";
 import convert from'./assets/convert.png'
-import jsPDF from 'jspdf';
 import download from './assets/download.png'
-import ConverterHeader from './ConverterHeader'
 import {Link} from 'react-router-dom'
+import { LandingPageContext } from "./Context/LandingPageContext";
 
 
 const Body = () => {
     const fileErrorMessage = "Maximum file reached";
-    const [iteratedFiles, setIteratedFiles] = useState(new Set()); // FROM ITERATION change to iterated files
-    const [files, setFiles] = useState([]);
-    const [fileUrl, setFileUrl] = useState([])
+    const {files, setFiles, iteratedFiles, downloadFile, setDownloadFile, convertFiles} = useContext(LandingPageContext);
     const [loading, setLoading] = useState({ 
         isLoading: false
     });
-    const [downloadFile, setDownloadFile] = useState(false);
-
+    
+    console.log(loading.isLoading, downloadFile);
     const toggle = useCallback(()=>{
         setLoading(prevLoading=>{
             return{
@@ -30,47 +27,15 @@ const Body = () => {
         setInterval(() => {
             setDownloadFile(!downloadFile)
         }, 3000);
-    },[downloadFile, loading.isLoading])
+    },[downloadFile, loading.isLoading, setDownloadFile])
 
 
     const handleChange = (eventTarget)=>{  //get files from input
         if (!loading.isLoading && files.length <= 3){
             setFiles(prevFiles =>[...prevFiles, eventTarget.files]);
-            setFileUrl(prevFileUrl =>[...prevFileUrl, eventTarget.value])
         };
     }
-    const convertFiles = useCallback(() => {
-        const doc = new jsPDF();
-        let fileName
-        files.map((y)=>{
-            Object.values(y).forEach(item=>{
-                const reader = new FileReader();
-                reader.onload = (e)=>{
-                    const url = e.target.result
-                    fileName = item.name.replace(/\.[^/.]+$/, '');
-                    const pageWidth = doc.internal.pageSize.getWidth();
-                    const imgProps = doc.getImageProperties(url);
-                    const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
-                    doc.addImage(url, 'JPEG', 10, 20, pageWidth - 20, pdfHeight - 20, null, 'FAST');
-                    doc.save(`${fileName}.pdf`);
-                };
-                reader.readAsDataURL(item);
-               
-            })
-            
-        })
-        
-    }, [files]);
-
-    useEffect(() => {   //iterate over multi-dimensional data gotten from input
-        if (files.length < 4) {
-            for (const i of files) {
-                for (const j of i) {
-                    setIteratedFiles(prevIteratedFiles=>new Set([...prevIteratedFiles, j]));
-                }
-            }  
-        }
-    }, [files]);
+    
 
     const displayFiles = Array.from(iteratedFiles).map(items=>
     <RenderDisplayFiles
@@ -82,7 +47,7 @@ const Body = () => {
 
     return(
         <>
-            <ConverterHeader getFile ={()=>convertFiles()} loadState={downloadFile} />
+            {/* <ConverterHeader getFile ={()=>convertFiles()} loadState={downloadFile} /> */}
             <div className="hero-body">
                 <div className="info-group">
                     <div className="hero-info">
@@ -103,7 +68,7 @@ const Body = () => {
                         </div>
                         <div className={files.length !== 0 && loading.isLoading && !downloadFile?"loader": "hide"}></div>
                         <div className="convert-icon">
-                            {files.length !== 0 && !loading.isLoading && (
+                            {files.length !== 0 && !loading.isLoading && !downloadFile &&(
                                 <img src={convert} alt="convert-file" onClick={toggle} className="show" />
                             )}
                             {downloadFile && <img src={download} alt="download-file" className="show" onClick={convertFiles}/>}
