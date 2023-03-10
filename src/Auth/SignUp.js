@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Styles/Signup.css'
 import google from '../assets/google.svg'
+import SignupContent from '../Component/SignupContent'
 
 
 const SignUp = () => {
@@ -10,8 +11,7 @@ const SignUp = () => {
       {/* <img src={arrow} alt="back" /> */}
       <div className='signup-container'>
         <div className='signup-content'>
-          <h2>Convert files without any limits!</h2> 
-          <p>Have access to range of file conversion options, including file types such as docx, xlsx and more. </p>
+          <SignupContent />
         </div>
         <div className='signup-form'>
           <h2>Create account</h2>
@@ -36,8 +36,11 @@ const SignUp = () => {
             We take your privacy and security seriously, so you can rest assured that your files and personal information are safe with us
             </label>
           </div>
+          <div className='sign-in-alt'>
+            <p className='with_google'>Or register with google</p>
+            <img src={google} alt="google"  className='google'/>
+          </div>
           <button className='register'>Register</button>
-          <p className='with_google'>Or register with google<img src={google} alt="google"  className='google'/></p>
         </div>
       </div>
     </>

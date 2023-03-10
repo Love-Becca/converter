@@ -1,4 +1,4 @@
-.signup-container{
+.signup-container, .login{
     width: 90vw;
     flex-wrap: wrap;
     gap: 13vw;
@@ -25,12 +25,12 @@
     color: rgb(197, 183, 183);
     font-style: italic;
 }
-.signup-form{
+.signup-form, .login-form{
     width: 30%;
     padding: 0vw 2.5vw;
 }
 
-.signup-form p{
+.signup-form p, .login-form p{
     font-size: 0.9rem;
     font-weight: 350;
 }
@@ -67,7 +67,7 @@ input[type = "checkbox"]{
     font-size: 0.8rem;
 }
 
-.register{
+.register, .login-form button{
     width: 93%;
     height: 38px;
     border: none;
@@ -79,12 +79,50 @@ input[type = "checkbox"]{
     color: whitesmoke;
     margin-top: 5px;
 }
-.with_google{
-    display: inline-block;
+.sign-in-alt{
+    display:flex;
+    height: 23px;
+    margin-top: 15px;
+    
+}
+
+.log-in-alt{
+    display:flex;
+    height: 23px;
+}
+
+.with_google, .login-google{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .google{
-    width: 2vw;
+    align-self: center;
+    width: 1.7vw;
+}
+
+
+.login-form input[type = "email"],
+.login-form input[type = "password"]{
+    width: 85%;
+    height: 37px;
+    margin-bottom: 2.2vh;
+    border: 2px solid rgb(197, 183, 183);
+    border-radius: 5px;
+    padding: 1px 10px;
+    background-color: transparent;
+    font-family: var(--poppins);
+}
+
+.login-form input[type = "email"]:focus-visible,
+.login-form input[type = "password"]:focus-visible{
+    outline: 2px solid rgb(250, 92, 34);
+    border: none;
+}
+
+.forget-password{
+    margin-top: 0px;
 }
 
 @media screen and (max-width:600px) {
@@ -92,7 +130,20 @@ input[type = "checkbox"]{
         width: 100%;
     }
     
-    .signup-form{
+    .signup-form, .login-form{
         width: 100%;
     }
+
+    .signup-content h2{
+        font-size: 3.5rem;
+    }
+
+    .signup-content p{
+        margin-top: 8px;
+    }
+
+    .signup-container, .login{
+        gap: 0vw;
+    }
+    
 }

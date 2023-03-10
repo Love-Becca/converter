@@ -20,8 +20,8 @@ const Header = (props) => {
                     </div>
                     <ul className={toggle?"hamburger-open":"hamburger-close"}>
                         <NavLink to="/"><li onClick={()=>location.pathname==='/'? convertFiles():undefined}>{location.pathname==='/'?"Download":"Home"}</li></NavLink>
-                        <li>About</li>
-                        <li>Sign in</li>
+                        <NavLink to="convert"><li>Convert</li></NavLink>
+                        <NavLink to="login"><li>Login</li></NavLink>
                         <NavLink to="signup" className={({isActive}) =>isActive? 'active': undefined}><li>Sign up</li></NavLink>
                     </ul>
                 </nav>

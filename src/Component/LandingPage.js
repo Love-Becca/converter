@@ -56,7 +56,7 @@ const Body = () => {
                         <Steps />
                     </div>
                     <div className="choose-file">
-                        <label className="button" htmlFor="upload">Choose File</label>
+                        <label className="button" htmlFor="upload">Choose Image</label>
                         <input type="file" id="upload" multiple={false} accept=".jpg,.png,.xlsx,.doc,.docx,.xml,application/msword" onChange={(e)=>handleChange(e.target)}/>
                         <p className="error-message">{files.length > 3 && fileErrorMessage}</p>
                     </div>
