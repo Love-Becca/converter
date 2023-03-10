@@ -1,0 +1,98 @@
+.signup-container{
+    width: 90vw;
+    flex-wrap: wrap;
+    gap: 13vw;
+    display: flex;
+    padding: 2vw 4vw;
+}
+
+.signup-content{
+    padding: 0 2vw;
+    width: 38%;
+}
+
+.signup-content h2{
+    /*rem or vw still contemplating */
+    font-size: 4.5rem;
+    margin-top: 0px;
+    margin-bottom: -18px;
+}
+
+.signup-content p{
+    font-size: 1rem;
+    margin-top: 0px;
+    font-weight: 500;
+    color: rgb(197, 183, 183);
+    font-style: italic;
+}
+.signup-form{
+    width: 30%;
+    padding: 0vw 2.5vw;
+}
+
+.signup-form p{
+    font-size: 0.9rem;
+    font-weight: 350;
+}
+
+
+input[type = "text"],
+input[type = "email"],
+input[type = "password"]{
+    width: 85%;
+    height: 37px;
+    margin-bottom: 2.2vh;
+    border: 2px solid rgb(250, 92, 34);
+    border-radius: 5px;
+    padding: 1px 10px;
+    background-color: transparent;
+    font-family: var(--poppins);
+}
+
+input[type = "text"]:focus-visible,
+input[type = "email"]:focus-visible,
+input[type = "password"]:focus-visible{
+    outline: 2px solid rgb(197, 183, 183);
+    border: none;
+}
+
+input[type = "checkbox"]{
+    width:3vw;
+    height:2.5vh;
+    margin: 0px -9px;
+    border:2px solid rgb(197, 183, 183);
+}
+
+.form-check-label{
+    font-size: 0.8rem;
+}
+
+.register{
+    width: 93%;
+    height: 38px;
+    border: none;
+    border-radius: 5px;
+    padding: 1px 10px;
+    background-color: rgb(197, 183, 183);
+    font-family: var(--poppins);
+    font-weight: 500;
+    color: whitesmoke;
+    margin-top: 5px;
+}
+.with_google{
+    display: inline-block;
+}
+
+.google{
+    width: 2vw;
+}
+
+@media screen and (max-width:600px) {
+    .signup-content{
+        width: 100%;
+    }
+    
+    .signup-form{
+        width: 100%;
+    }
+}

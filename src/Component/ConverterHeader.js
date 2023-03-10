@@ -1,7 +1,7 @@
 import React,{useState, useContext}from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import './Converter.css'
-import { LandingPageContext } from "./Context/LandingPageContext";
+import '../Styles/Converter.css'
+import { LandingPageContext } from "../Context/LandingPageContext";
 
 const Header = (props) => {
     const {convertFiles } = useContext(LandingPageContext)

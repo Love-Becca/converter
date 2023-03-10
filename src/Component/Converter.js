@@ -1,12 +1,12 @@
 import React,{useState, useCallback, useContext} from "react";
 import Steps from "./Steps";
-import './Converter.css'
-import cloud from './assets/hero-image.png'
+import '../Styles/Converter.css'
+import cloud from '../assets/hero-image.png'
 import RenderDisplayFiles from "./Processing";
-import convert from'./assets/convert.png'
-import download from './assets/download.png'
+import convert from'../assets/convert.png'
+import download from '../assets/download.png'
 import {Link} from 'react-router-dom'
-import { LandingPageContext } from "./Context/LandingPageContext";
+import { LandingPageContext } from "../Context/LandingPageContext";
 
 
 const Body = () => {
@@ -16,7 +16,6 @@ const Body = () => {
         isLoading: false
     });
     
-    console.log(loading.isLoading, downloadFile);
     const toggle = useCallback(()=>{
         setLoading(prevLoading=>{
             return{
@@ -47,12 +46,11 @@ const Body = () => {
 
     return(
         <>
-            {/* <ConverterHeader getFile ={()=>convertFiles()} loadState={downloadFile} /> */}
             <div className="hero-body">
                 <div className="info-group">
                     <div className="hero-info">
                         <h2 className="hero-title">File Converter</h2>
-                        <p className="hero-details">To get started use the button below and select files to convert from your laptop.</p>
+                        <p className="hero-details">To get started use the button below and select files to convert from your device.</p>
                     </div>
                     <div className="hero-steps">
                         <Steps />
@@ -68,7 +66,7 @@ const Body = () => {
                         </div>
                         <div className={files.length !== 0 && loading.isLoading && !downloadFile?"loader": "hide"}></div>
                         <div className="convert-icon">
-                            {files.length !== 0 && !loading.isLoading && !downloadFile &&(
+                            {files.length !== 0 && !loading.isLoading && !downloadFile &&( //added downloadFile to stop it from rendering after file is ready for download
                                 <img src={convert} alt="convert-file" onClick={toggle} className="show" />
                             )}
                             {downloadFile && <img src={download} alt="download-file" className="show" onClick={convertFiles}/>}

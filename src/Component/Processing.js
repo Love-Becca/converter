@@ -1,5 +1,5 @@
 import React from 'react';
-import file from './assets/file.svg';
+import file from '../assets/file.svg';
 
 
 const RenderDisplayFiles = (data) => {

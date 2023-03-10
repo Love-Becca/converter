@@ -1,5 +1,5 @@
 import React from 'react';
-import './Converter.css'
+import '../Styles/Converter.css'
 
 const Steps = () => {
     return (  
