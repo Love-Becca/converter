@@ -7,14 +7,16 @@ import LandingPageContextProvider from './Context/LandingPageContext';
 import Login, { loginAction } from './Auth/Login'
 import Dashboard from './Component/Dashboard';
 import FormContextProvider from './Context/FormContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css' 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Header />}>
       <Route index element ={<LandingPage />} />
-      <Route path='signup' element={<SignUp />}/>
-      <Route path='login' element={<Login />}/>
-      <Route path='convert' element={<Dashboard />} action={loginAction}/>
+      <Route path='signup' element={<SignUp />} action={signupAction} />
+      <Route path='login' element={<Login />} action={loginAction}/>
+      <Route path='convert' element={<Dashboard />}/>
     </Route>
   )
 );
@@ -27,6 +29,7 @@ function App() {
           <RouterProvider router={router} />
         </FormContextProvider>
       </LandingPageContextProvider>
+      <ToastContainer />
     </div>
   );
 }

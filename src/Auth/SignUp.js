@@ -1,22 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../Styles/Signup.css'
 import google from '../assets/google.svg'
 import SignupContent from '../Component/SignupContent'
-import { Form, redirect } from 'react-router-dom';
-// import {FormContext} from '../Context/FormContext'
+import { Form, redirect, useActionData } from 'react-router-dom';
+import {createUser} from "../Helper/createUser";
+import { toast } from 'react-toastify';
 
-
-export async function action(){
-  return redirect("/convert")
-}
 const SignUp = () => {
-  // const {formData, setFormData} = useContext(FormContext)
-  const handleForm = (e)=>{
-    console.log(e.target.email.value);
-  }
+  const errors_message = useActionData()
+
+  console.log(errors_message);
   return (
     <>
-      {/* <img src={arrow} alt="back" /> */}
       <div className='signup-container'>
         <div className='signup-content'>
           <SignupContent />
@@ -24,23 +19,37 @@ const SignUp = () => {
         <div className='signup-form'>
           <h2>Create account</h2>
           <p>Register with email</p>
-          <Form method='post' action='/convert' onSubmit={(event)=>handleForm(event)}>
+          <Form method='post'>
             <div className="name">
-              {/* <label htmlFor="name" className="form-label">Name</label> */}
               <input type="text"
-                className="form-control" name="name" id="enter-name" placeholder="Name"/>
+                className="form-control" 
+                name="name" id="enter-name" 
+                placeholder="Name"
+                maxLength={35} 
+                required/>
             </div>
             <div className="email">
-              {/* <label htmlFor="email" className="form-label">Email</label> */}
               <input type="email"
-                name="email" id="enter-email"  placeholder="Email"/>
+                name="email" 
+                id="enter-email"  
+                maxLength={40}
+                placeholder="Email"/>
             </div>
             <div className="password">
-              {/* <label htmlFor="password" className="form-label">Password</label> */}
-              <input type="password" className="form-control" name="password" id="enter" placeholder="Password"/>
+              <input type="password" 
+                className="form-control"
+                name="password" 
+                id="enter" 
+                placeholder="Password"
+                maxLength={15} 
+                required/>
             </div>
+            {errors_message && errors_message.error && <p>{errors_message.error}</p>}
             <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="accept-privacy"/>
+              <input className="form-check-input" 
+                type="checkbox" 
+                value="" 
+                id="accept-privacy"/>
               <label className="form-check-label" htmlFor="accept-privacy">
               We take your privacy and security seriously, so you can rest assured that your files and personal information are safe with us
               </label>
@@ -56,7 +65,21 @@ const SignUp = () => {
     </>
   );
 }
-export const signupAction = async ({request})=>{
-  const data = await request.formData()
-}
 export default SignUp;
+
+export const signupAction = async ({request})=>{
+  const formData = await request.formData()
+
+  const signup_data = {
+    email: formData.get('email'),
+    password: formData.get('password'),
+    name: formData.get('name')
+  }
+  if (signup_data.name.match(/\d+/g)) return ({error: 'Enter your name in characters'},toast.error("Enter your name in character!"))//if name contains number
+  if (signup_data.name.length < 10) return ({error: 'Enter your last name and first name'},toast.error('Enter your last name and first name!'))
+  if (!signup_data.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) return ({error: 'Wrong email format'}, toast.error('Wrong email format!'))
+  if (signup_data.password.length < 8) return ({error: 'Password should be greater than 5'}, toast.error('Password less than 7!'))
+  createUser(signup_data)
+  toast.success(`Registration successful`)
+  return redirect('/convert') 
+}
