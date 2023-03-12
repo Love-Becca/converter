@@ -2,14 +2,11 @@ import React from 'react';
 import '../Styles/Signup.css'
 import google from '../assets/google.svg'
 import SignupContent from '../Component/SignupContent'
-import { Form, redirect, useActionData } from 'react-router-dom';
+import { Form, redirect} from 'react-router-dom';
 import {createUser} from "../Helper/createUser";
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
-  const errors_message = useActionData()
-
-  console.log(errors_message);
   return (
     <>
       <div className='signup-container'>
@@ -44,11 +41,10 @@ const SignUp = () => {
                 maxLength={15} 
                 required/>
             </div>
-            {errors_message && errors_message.error && <p>{errors_message.error}</p>}
             <div className="form-check">
               <input className="form-check-input" 
                 type="checkbox" 
-                value="" 
+                name='check'
                 id="accept-privacy"/>
               <label className="form-check-label" htmlFor="accept-privacy">
               We take your privacy and security seriously, so you can rest assured that your files and personal information are safe with us
@@ -67,18 +63,21 @@ const SignUp = () => {
 }
 export default SignUp;
 
-export const signupAction = async ({request})=>{
+export const signupAction = async ({request})=>{;
   const formData = await request.formData()
-
   const signup_data = {
     email: formData.get('email'),
     password: formData.get('password'),
-    name: formData.get('name')
+    name: formData.get('name'),
+    isChecked: formData.get('check')
   }
+
+  console.log(formData.get('check'));
   if (signup_data.name.match(/\d+/g)) return ({error: 'Enter your name in characters'},toast.error("Enter your name in character!"))//if name contains number
   if (signup_data.name.length < 10) return ({error: 'Enter your last name and first name'},toast.error('Enter your last name and first name!'))
   if (!signup_data.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) return ({error: 'Wrong email format'}, toast.error('Wrong email format!'))
   if (signup_data.password.length < 8) return ({error: 'Password should be greater than 5'}, toast.error('Password less than 7!'))
+  if (signup_data.isChecked !== 'on') return ({error: 'Terms and Policy'}, toast.error('Terms and Policy!'))
   createUser(signup_data)
   toast.success(`Registration successful`)
   return redirect('/convert') 
