@@ -1,9 +1,10 @@
-import React, { useState, useEffect, createContext,useCallback} from 'react';
+import React, { useState, useEffect, createContext,useCallback, useRef} from 'react';
 import jsPDF from 'jspdf';
 export const LandingPageContext = createContext()
 
 const LandingPageContextProvider = (props) => {
     const [files, setFiles] = useState([]);
+    const [isFixed, setIsFixed] = useState(false);
     const [iteratedFiles, setIteratedFiles] = useState(new Set()); // FROM ITERATION change to iterated files
     const [downloadFile, setDownloadFile] = useState(false);
 
@@ -39,8 +40,12 @@ const LandingPageContextProvider = (props) => {
         
     }, [files]);
 
+    const updateIsFixed = (value) => {
+        setIsFixed(value);
+    };
+
     return (
-        <LandingPageContext.Provider value={{files, setFiles, iteratedFiles, setIteratedFiles, downloadFile, setDownloadFile, convertFiles}}>
+        <LandingPageContext.Provider value={{files, setFiles, iteratedFiles, setIteratedFiles, downloadFile, setDownloadFile, convertFiles, isFixed, updateIsFixed}}>
             {props.children}
         </LandingPageContext.Provider>
     );

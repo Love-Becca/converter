@@ -4,5 +4,6 @@ export const createUser = (signup)=>{
 
 
 export const registered = ()=>{
-    return JSON.parse(localStorage.getItem("user"))
+    const userData = JSON.parse(localStorage.getItem("user"))
+    return userData;
 }

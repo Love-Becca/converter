@@ -24,6 +24,18 @@ li:active{
     display: none;
 }
 
+header{
+    position: relative;
+}
+
+header.fixed{
+    background-color: bisque;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .info-group{
     width: 40vw;
 }

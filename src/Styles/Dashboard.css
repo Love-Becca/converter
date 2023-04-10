@@ -1,0 +1,57 @@
+.Dashboard{
+    padding: 0px 50px; 
+}
+.show_user{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    width: max-content;;
+    position: absolute;
+    right: 45px;
+    margin-top: -60px;
+}
+
+.show_user img{
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.show_user p{
+    color: white;
+    font-weight: 700;
+}
+
+.product_card{
+    padding: 10px 20px;
+    border: 1px solid green;
+    width: 250px;
+}
+.product_card button{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.product_group{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.place_in_header{
+    position: fixed;
+    top: 15px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    width: max-content;
+}
+
+.place_in_header img{
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.place_in_header p{
+    color: white;
+    font-weight: 700;
+}

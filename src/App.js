@@ -6,7 +6,6 @@ import Header from './Component/Header';
 import LandingPageContextProvider from './Context/LandingPageContext';
 import Login, { loginAction } from './Auth/Login'
 import Dashboard from './Component/Dashboard';
-import FormContextProvider from './Context/FormContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css' 
 
@@ -25,9 +24,7 @@ function App() {
   return (
     <div className="App">
       <LandingPageContextProvider>
-        <FormContextProvider>
-          <RouterProvider router={router} />
-        </FormContextProvider>
+        <RouterProvider router={router} />
       </LandingPageContextProvider>
       <ToastContainer />
     </div>

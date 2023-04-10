@@ -1,17 +1,31 @@
-import React,{useState, useContext}from "react";
+import React,{useState, useContext, useRef, useEffect}from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import '../Styles/Converter.css'
 import { LandingPageContext } from "../Context/LandingPageContext";
 
 const Header = (props) => {
-    const {convertFiles } = useContext(LandingPageContext)
+    const {convertFiles, isFixed, updateIsFixed} = useContext(LandingPageContext)
     const [toggle, setToggle] = useState(false);
     const toggleNavBar = ()=>setToggle(!toggle)
     const location = useLocation();
+    const headerRef = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+          const offset = window.pageYOffset;
+          const threshold = headerRef.current.offsetHeight * 2;
+          updateIsFixed(offset > threshold);
+        };
     
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+    }, [updateIsFixed]);
+
     return (
         <>
-            <header>
+            <header className={isFixed ? 'fixed' : ''} ref={headerRef}>
                 <nav>
                     <div className={toggle?"hamburger-menu slide-forward":"hamburger-menu slide-backward"} onClick={toggleNavBar}>
                         <span></span>
