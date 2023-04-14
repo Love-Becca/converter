@@ -5,6 +5,7 @@ import { dashboardData } from '../Helper/displayData';
 import '../Styles/Dashboard.css'
 import ProductCard from './ProductCard';
 import { LandingPageContext } from "../Context/LandingPageContext";
+import Login from "../Auth/Login"
 
 const Dashboard = () => {
     const {isFixed}= useContext(LandingPageContext)
@@ -17,18 +18,20 @@ const Dashboard = () => {
         description = {data.description}
         btn = {data.button}
     />)
-    console.log(isFixed);
     return ( 
-        <div className='Dashboard'>
-            <h3>Convert your files to suitable format</h3>
-            <div className={isFixed?"place_in_header":'show_user'}>
-                <img src={user} alt='user'  width={"40px"}/>
-                <p>{registeredUser.name}</p>
-            </div>
-            <div className='product_group'>
-                {displayCards}
-            </div>
-        </div>
+        <>
+            {registeredUser && <div className='Dashboard'>
+                <h3>Convert your files to suitable format</h3>
+                <div className={isFixed?"place_in_header":'show_user'}>
+                    <img src={user} alt='user'  width={"40px"}/>
+                    <p>{registeredUser.name}</p>
+                </div>
+                <div className='product_group'>
+                    {displayCards}
+                </div>
+            </div>}
+            {!registeredUser && <Login />}
+        </>
     );
 }
  

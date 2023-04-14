@@ -15,7 +15,7 @@ const router = createBrowserRouter(
       <Route index element ={<LandingPage />} />
       <Route path='signup' element={<SignUp />} action={signupAction} />
       <Route path='login' element={<Login />} action={loginAction}/>
-      <Route path='convert' element={<Dashboard />}/>
+      <Route path='convert' element={<Dashboard action={loginAction}/>}/>
     </Route>
   )
 );

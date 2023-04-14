@@ -1,7 +1,8 @@
 import React,{useState, useContext, useRef, useEffect}from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, redirect, useLocation } from "react-router-dom";
 import '../Styles/Converter.css'
 import { LandingPageContext } from "../Context/LandingPageContext";
+import {registered} from "../Helper/createUser.js"
 
 const Header = (props) => {
     const {convertFiles, isFixed, updateIsFixed} = useContext(LandingPageContext)
@@ -13,7 +14,7 @@ const Header = (props) => {
     useEffect(() => {
         const handleScroll = () => {
           const offset = window.pageYOffset;
-          const threshold = headerRef.current.offsetHeight * 2;
+          const threshold = headerRef.current.offsetHeight * 0.5;
           updateIsFixed(offset > threshold);
         };
     

@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
     const data = useActionData()
-    console.log(data);
     return (
         <div className='login'>
             <div className='signup-content'>
