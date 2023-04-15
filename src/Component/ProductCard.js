@@ -16,7 +16,7 @@ const ProductCard = (props) => {
             <img src={props.img} alt='product_img' width={"30px"} />
             <h3>{props.title}</h3>
             <p>{props.description}</p>
-            <button onClick={handleModalOpen}>{props.btn}</button>
+            <button onClick={handleModalOpen} className='modal_button'>{props.btn}</button>
             {isOpen && <FileModal open={isOpen} onClose={handleModalClose}/>}
         </div>
     );
