@@ -1,5 +1,5 @@
 .Dashboard{
-    padding: 0px 50px; 
+  padding: 0px 50px; 
 }
 .show_user{
     display: grid;
@@ -195,3 +195,15 @@
     border-width: 0 3px 3px 0;
     display: inline-block;
   }  
+
+.convert_download{
+  display: flex;
+  gap:40px;
+  width: max-content;
+}
+
+.file_list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

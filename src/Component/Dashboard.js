@@ -17,6 +17,7 @@ const Dashboard = () => {
         title = {data.title}
         description = {data.description}
         btn = {data.button}
+        id={data.id}
     />)
     return ( 
         <>
