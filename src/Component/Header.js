@@ -26,7 +26,7 @@ const Header = (props) => {
 
     return (
         <>
-            <header className={isFixed ? 'fixed' : ''} ref={headerRef}>
+            <header className={isFixed ? 'fixed' : 'unfixed'} ref={headerRef}>
                 <nav>
                     <div className={toggle?"hamburger-menu slide-forward":"hamburger-menu slide-backward"} onClick={toggleNavBar}>
                         <span></span>

@@ -24,16 +24,23 @@
 .product_card{
     padding: 10px 20px;
     border: 1px solid green;
-    width: 250px;
-}
+    width: 100%;
+    height: 300px; /* set a fixed height */
+  }
 .product_card button{
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
+}
+
+.product_card p{
+  font-size: 0.9rem;
+  overflow: hidden;
 }
 
 .product_group{
     display: flex;
-    gap: 20px;
+    row-gap: 5vh;
+    column-gap: 4vw;
     flex-wrap: wrap;
 }
 
@@ -206,4 +213,42 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+@media screen and (max-width:500px){
+  .show_user, .place_in_header{
+    display: none;
+  
+  }
+
+  .Dashboard{
+    margin-top:50px ;
+    padding: 0px 10px;
+  }
+
+  .Dashboard h3{
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* Adjust the width for small screens */
+  .product_card {
+    width: 100%;
+    height: 50vh;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Adjust the width for medium screens */
+  .product_card {
+    width: 33.3%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  /* Adjust the width for large screens */
+  .product_card {
+    width: 25%;
+  }
 }

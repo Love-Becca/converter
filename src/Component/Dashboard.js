@@ -23,7 +23,7 @@ const Dashboard = () => {
         <>
             {registeredUser && <div className='Dashboard'>
                 <h3>Convert your files to suitable format</h3>
-                <div className={isFixed?"place_in_header":'show_user'}>
+                <div className={`${isFixed?"place_in_header":'show_user'} set_in_header`}>
                     <img src={user} alt='user'  width={"40px"}/>
                     <p>{registeredUser.name}</p>
                 </div>

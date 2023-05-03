@@ -1,13 +1,13 @@
 import React, { useState,useEffect } from 'react';
 import '../Styles/Dashboard.css';
-var XLSX = require("xlsx");
-console.log(XLSX);
+import XLSX from 'xlsx';
+
 
 const FileModal = (props) => {
   const [selectedFile, setSelectedFile] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
-  
+  console.log(selectedFile[0]);
   const fileTypes = {
     excel: {
       ext: [".csv" , ".xlsx", ".xml"]
@@ -57,12 +57,6 @@ const FileModal = (props) => {
 
   };
   
-  useEffect(() => {
-    if (selectedFile.length > 0) {
-      const workbook = XLSX.readFile(selectedFile[0].name)
-      console.log(workbook);
-    }
-  }, [selectedFile]);
 
   const removeFile = (indexToRemove)=>{
     setSelectedFile(prevSelectedFile => {
@@ -70,16 +64,36 @@ const FileModal = (props) => {
     })
   }
 
-
-  const handleConvert = () => {
+  
+  const handleConvert = (file)=>{
     setIsProcessing(true);
+    const promise = new Promise((resolve, reject)=>{
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file);
+      fileReader.onload = (e)=>{
+        const bufferArray = e.target.result;
+        const wb = XLSX.read(bufferArray, {type:"buffer"});
+        const wsname = wb.SheetNames[1];
+        const ws = wb.Sheets[wsname];
+        const data = XLSX.utils.sheet_to_json(ws);
+        resolve(data);
+      }
+      fileReader.onerror = (error) =>{
+        reject(error);
+      }
+    })
 
-    // Simulate a delay for demonstration purposes
+    promise.then((d)=>{
+      console.log(d)
+    })
+
     setTimeout(() => {
       setIsProcessing(false);
       setIsCompleted(true);
     }, 3000);
-  };
+  }
+  
+  
 
   const handleDownload = () => {
     // Implement download logic here
@@ -111,7 +125,7 @@ const FileModal = (props) => {
               </div>
             )}
             <div className='convert_download'>
-                <button className="convert-button" onClick={handleConvert}>
+                <button className="convert-button" onClick={()=>handleConvert(selectedFile[0])}>
                 {isProcessing ? (
                     <div className="processing-animation"></div>
                 ) : (
