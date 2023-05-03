@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import '../Styles/Dashboard.css';
-import XLSX from 'xlsx';
-
+import { handleConvert } from '../Helper/excelToPdf';
 
 const FileModal = (props) => {
   const [selectedFile, setSelectedFile] = useState([]);
@@ -65,35 +64,6 @@ const FileModal = (props) => {
   }
 
   
-  const handleConvert = (file)=>{
-    setIsProcessing(true);
-    const promise = new Promise((resolve, reject)=>{
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-      fileReader.onload = (e)=>{
-        const bufferArray = e.target.result;
-        const wb = XLSX.read(bufferArray, {type:"buffer"});
-        const wsname = wb.SheetNames[1];
-        const ws = wb.Sheets[wsname];
-        const data = XLSX.utils.sheet_to_json(ws);
-        resolve(data);
-      }
-      fileReader.onerror = (error) =>{
-        reject(error);
-      }
-    })
-
-    promise.then((d)=>{
-      console.log(d)
-    })
-
-    setTimeout(() => {
-      setIsProcessing(false);
-      setIsCompleted(true);
-    }, 3000);
-  }
-  
-  
 
   const handleDownload = () => {
     // Implement download logic here
@@ -125,7 +95,7 @@ const FileModal = (props) => {
               </div>
             )}
             <div className='convert_download'>
-                <button className="convert-button" onClick={()=>handleConvert(selectedFile[0])}>
+                <button className="convert-button" onClick={()=>handleConvert(selectedFile,setIsProcessing, setIsCompleted)}>
                 {isProcessing ? (
                     <div className="processing-animation"></div>
                 ) : (
