@@ -9,7 +9,7 @@ li{
 ul{
     display: flex;
     gap: 4vw;
-    justify-content: end;
+    justify-content:flex-end;
     padding: 0.5vw calc(100vw - 99%);
     text-decoration: none;
     container-type: inline-size;
