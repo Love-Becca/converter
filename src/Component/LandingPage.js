@@ -1,13 +1,14 @@
-import React,{useState, useCallback, useContext, } from "react";
+import React,{useState, useCallback, useContext, lazy, Suspense } from "react";
 import Steps from "./Steps";
 import '../Styles/Converter.css'
-import cloud from '../assets/hero-image.png'
 import RenderDisplayFiles from "./Processing";
 import convert from'../assets/convert.png'
 import download from '../assets/download.png'
 import {Link} from 'react-router-dom'
 import { LandingPageContext } from "../Context/LandingPageContext";
 
+
+const HeroPreview = lazy(() => import('./HeroImg.js'));
 
 const Body = () => {
     const fileErrorMessage = "Maximum file reached";
@@ -74,9 +75,9 @@ const Body = () => {
                     </div>
                 
                 </div>
-                <div className="hero-image">
-                    <img src={cloud} alt="file" className="cloud-image"/>
-                </div>
+                <Suspense fallback={"Loading ...."}>
+                    <HeroPreview />
+                </Suspense>
             </div>
             <p className="convert_other_files">Image only.<Link to='signup'>Convert other files?</Link></p>
             
