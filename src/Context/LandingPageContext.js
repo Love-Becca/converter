@@ -20,23 +20,31 @@ const LandingPageContextProvider = (props) => {
 
     const convertFiles = useCallback(() => {
         const doc = new jsPDF();
-        files.map((y)=>{
-            Object.values(y).forEach(item=>{
-                const reader = new FileReader();
-                reader.onload = (e)=>{
-                    const url = e.target.result
-                    const fileName = item.name.replace(/\.[^/.]+$/, '');
-                    const pageWidth = doc.internal.pageSize.getWidth();
-                    const imgProps = doc.getImageProperties(url);
-                    const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
-                    doc.addImage(url, 'JPEG', 10, 20, pageWidth - 20, pdfHeight - 20, null, 'FAST');
-                    doc.save(`${fileName}.pdf`);
-                };
-                reader.readAsDataURL(item);
-               
-            })
-            
-        })
+        files.map((y) => {
+            return Object.values(y).forEach((item) => {
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                const url = e.target.result;
+                const fileName = item.name.replace(/\.[^/.]+$/, '');
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const imgProps = doc.getImageProperties(url);
+                const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+                doc.addImage(
+                  url,
+                  'JPEG',
+                  10,
+                  20,
+                  pageWidth - 20,
+                  pdfHeight - 20,
+                  null,
+                  'FAST'
+                );
+                doc.save(`${fileName}.pdf`);
+              };
+              reader.readAsDataURL(item);
+            });
+        });
+          
         
     }, [files]);
 

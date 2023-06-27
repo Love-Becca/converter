@@ -39,8 +39,10 @@ const FileModal = (props) => {
       } else if (Array.isArray(selectedFileType.ext)) {
         return selectedFileType.ext.some(ext => file.name.endsWith(ext));
       }
+      return false; // Add a default return statement
     });
   };
+  
   
   const handleFileChange = (event) => {
     const selectedFileType = fileTypes[props.clicked_card];
