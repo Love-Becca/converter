@@ -1,8 +1,8 @@
 import React,{useState, useContext, useRef, useEffect}from "react";
-import { NavLink, Outlet, redirect, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import '../Styles/Converter.css'
 import { LandingPageContext } from "../Context/LandingPageContext";
-import {registered} from "../Helper/createUser.js"
+// import {registered} from "../Helper/createUser.js"
 
 const Header = (props) => {
     const {convertFiles, isFixed, updateIsFixed} = useContext(LandingPageContext)

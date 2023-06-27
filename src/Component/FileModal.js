@@ -1,6 +1,8 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState} from 'react';
 import '../Styles/Dashboard.css';
 import { handleConvert } from '../Helper/excelToPdf';
+// import { pdfToExcel } from '../Helper/pdfToExcel';
+// import { convertJsonToPdf } from '../Helper/jsonTopdf';
 
 const FileModal = (props) => {
   const [selectedFile, setSelectedFile] = useState([]);
@@ -95,7 +97,7 @@ const FileModal = (props) => {
               </div>
             )}
             <div className='convert_download'>
-                <button className="convert-button" onClick={()=>handleConvert(selectedFile,setIsProcessing, setIsCompleted)}>
+                <button className="convert-button" onClick={()=>handleConvert(selectedFile, setIsProcessing, setIsCompleted)}>
                 {isProcessing ? (
                     <div className="processing-animation"></div>
                 ) : (
